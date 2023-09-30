@@ -15,18 +15,19 @@ export default class App extends React.Component {
 
     this.state = {
       username: "",
+      email: "",
       password: "",
+      passwordAgain:"",
     };
   }
   render() {
     return (
       <ScrollView style={style.container}>
         <View style={style.containerDiv}>
-          <View style={style.signInBox}>
-            <Text style={style.loginText}>Log in</Text>
+          <View style={style.signUp1}>
+            <Text style={style.signUp1Text}>Sign up</Text>
             <TextInput
               style={[style.textInputArea, { marginBottom: 50 }]}
-              // secureTextEntry={true}
               autoCorrect={false}
               autoCapitalize="none"
               placeholder="username"
@@ -37,7 +38,18 @@ export default class App extends React.Component {
               }}
             />
             <TextInput
-              style={style.textInputArea}
+              style={[style.textInputArea, { marginBottom: 50 }]}
+              autoCorrect={false}
+              autoCapitalize="none"
+              placeholder="email"
+              value={this.state.email}
+              onChangeText={(email) => {
+                this.setState({email});
+                console.log(this.state.email);
+              }}
+            />
+            <TextInput
+              style={[style.textInputArea, { marginBottom: 50 }]}
               secureTextEntry={true}
               autoCorrect={false}
               autoCapitalize="none"
@@ -48,18 +60,25 @@ export default class App extends React.Component {
                 console.log(this.state.password);
               }}
             />
-            <View style={style.forgetTO}>
-              <TouchableOpacity>
-                <Text style={style.forgetTOText}>Forgot password?</Text>
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity style={style.logButtonTO}>
-              <Text style={style.LogButtonText}>Log in</Text>
+            <TextInput
+              style={style.textInputArea}
+              secureTextEntry={true}
+              autoCorrect={false}
+              autoCapitalize="none"
+              placeholder="password again"
+              value={this.state.passwordAgain}
+              onChangeText={(passwordAgain) => {
+                this.setState({ passwordAgain });
+                console.log(this.state.passwordAgain);
+              }}
+            />
+            <TouchableOpacity style={style.signButtonTO}>
+              <Text style={style.signUpButton}>Sign up</Text>
             </TouchableOpacity>
             <View style={style.EndText}>
-              <Text style={{ fontSize: 17 }}>Don't have an account?</Text>
+              <Text style={{ fontSize: 17 }}>Already have an account?</Text>
               <TouchableOpacity>
-                <Text style={style.signUpText}> Sign up</Text>
+                <Text style={style.signUpText}> Log in</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -81,11 +100,11 @@ const style = StyleSheet.create({
     borderRadius: 20,
     height: 730,
   },
-  signInBox: {
+  signUp1: {
     padding: 20,
   },
-  loginText: {
-    marginVertical: 70,
+  signUp1Text: {
+    marginVertical: 50,
     fontSize: 40,
     color: "indigo",
     fontWeight: "bold",
@@ -97,23 +116,16 @@ const style = StyleSheet.create({
     fontSize: 20,
     marginBottom: 20,
   },
-  forgetTO: {
-    alignItems: "flex-end",
-  },
-  forgetTOText: {
-    fontSize: 18,
-    color: "#24a0ed",
-  },
-  logButtonTO: {
-    marginTop: 80,
+  signButtonTO: {
+    marginTop: 60,
     alignItems: "center",
     justifyContent: "center",
     height: 60,
     backgroundColor: "indigo",
     borderRadius: 20,
-    marginBottom: 50,
+    marginBottom: 20,
   },
-  LogButtonText: {
+  signUpButton: {
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
